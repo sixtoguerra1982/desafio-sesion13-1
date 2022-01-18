@@ -1,0 +1,8 @@
+var notice = document.getElementById('notice');
+notice.classList.remove('d-none')
+$(notice).fadeIn()
+notice.innerHTML = '<%= @errors.join(',') %>'
+setTimeout(function() {
+    $(notice).fadeOut('slow')
+    notice.classList.add('d-none')
+},2000);

@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   def create
 
     @post = Post.new(post_params)
-    sleep 2.seconds
+    sleep 1.seconds
 
     respond_to do |format|
       if @post.save
@@ -37,10 +37,15 @@ class PostsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
+        @errors = []
+        @post.errors.full_messages.each do |message|
+          @errors << message
+        end
+        format.js { render 'errorss' }
       end
     end
   end
-
+  
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update

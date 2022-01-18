@@ -1,12 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<div id="create_post">
-  <%= render template: 'posts/new', post: @post %>
+<div id="notice" class="alert alert-danger d-none" role="alert">
+ <%= notice %>
 </div>
 
-<table>
+<h1>Posts</h1>
+<div class="row">
+  <div class="col-md-8">
+    <div id="create_post">
+      <%= render template: 'posts/new', post: @post %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <p id="item-show"></p>
+  </div>
+</div>
+
+<table class="table table-dark">
   <thead>
     <tr>
       <th>Title</th>

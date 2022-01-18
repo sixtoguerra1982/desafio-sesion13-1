@@ -1,0 +1,49 @@
+<% if post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+    <ul>
+    <% post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if  controller.action_name == "index" %>
+  <%= form_with(model: post,remote: true) do |form| %>
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="field">
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Submit', data: { disable_with: 'Creating post...' } %>
+      </div>
+  <% end %>
+<% else %>
+ <%= form_with(model: post,local: true) do |form| %>
+     <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+
+      <div class="field">
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Submit', data: { disable_with: 'Creating post...' } %>
+      </div>
+  <% end %>
+<% end %>
+
+  
+<p><%= controller.action_name %></p>
+
